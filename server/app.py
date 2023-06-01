@@ -33,7 +33,8 @@ def recebeOC():
     dados = request.json
     oc = dados['oc']
     data = dados['data']
-    response = OCs.insert(oc, 0, data)  # Substitua 0 pelo valor adequado para a coluna "quantidadePecas"
+    quantidadePecas = dados['quantidadePecas']
+    response = OCs.insert(oc, quantidadePecas, data)  # Substitua 0 pelo valor adequado para a coluna "quantidadePecas"
     return {"value": response}
 
 @app.route('/api/historico',methods=["POST", "GET"])

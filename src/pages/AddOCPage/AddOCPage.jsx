@@ -11,6 +11,7 @@ import 'dayjs/locale/pt-br';
 export default function AddOCPage(){
 
     const [oc, setOC] = useState("");
+    const [qnt, setQnt] = useState(0);
     const [ocsAdd, setOcsAdd] = useState(0);
     const [isEmptyError, setIsEmptyError] = useState(false);
     const [isDuplicateError, setIsDuplicateError] = useState(false);
@@ -27,6 +28,7 @@ export default function AddOCPage(){
         e.preventDefault();
         axios.post("http://192.168.0.152:4000/api/recebeOC", {
             oc: oc,
+            quantidadePecas: qnt,
             data: dayjs().format('DD/MM/YYYY - h:m'),
         }).then(response => {
             console.log(response)
@@ -43,6 +45,12 @@ export default function AddOCPage(){
                 <Input 
                     onChange={(e) => setOC(e.target.value)} 
                     placeholder = "Código da OC"
+                    type = "number"
+                />
+                <Input 
+                    onChange={(e) => setQnt(e.target.value)} 
+                    placeholder = "Quantidade de Peças na OC"
+                    type = "number"
                 />
                 <button type='submit'> Cadastrar OC </button>
             </Form>
