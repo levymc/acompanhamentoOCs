@@ -11,7 +11,7 @@ def obter_paginas():
     pages = [
         {
             'text': 'Adicionar OCs',
-            'route': '/',
+            'route': '/addOC',
             'onClick': ''
         },
         {

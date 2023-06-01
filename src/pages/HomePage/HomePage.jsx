@@ -3,10 +3,12 @@ import Button from '../../components/Button';
 import Logo from '../../components/Logo';
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from "react";
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 
 export default function HomePage(){
 
+    const navigateTo = useNavigate();
     const [pages, setPages] = useState([]);
 
     useEffect(() => {
@@ -25,7 +27,14 @@ export default function HomePage(){
             <ContainerHome>
                 <h1>Acompanhamento OCs</h1>
                 {pages.map((page, i) => (
-                    <Button key={i} text={page["text"]} />
+                    <Button 
+                        key={i}  
+                        text={page["text"]} 
+                        onClick={() => {
+                            console.log(page["route"])
+                            navigateTo(page["route"])
+                        }}
+                    />
                 ))}
                 <Logo />
             </ContainerHome>

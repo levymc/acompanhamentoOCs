@@ -4,7 +4,7 @@ import React, { useState, createContext } from "react";
 export default function Button(props){
     return (
         <>
-            <SCButton>{props.text}</SCButton>
+            <SCButton onClick={props.onClick}>{props.text}</SCButton>
         </>
     )
 }
