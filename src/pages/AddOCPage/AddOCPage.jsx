@@ -5,6 +5,8 @@ import Input from '../../components/Input';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import BtnHome from '../../components/BtnHome';
 import Logo from '../../components/Logo';
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br';
 
 export default function AddOCPage(){
 
@@ -14,12 +16,19 @@ export default function AddOCPage(){
     const [isDuplicateError, setIsDuplicateError] = useState(false);
     const [isLengthError, setIsLengthError] = useState(false);
 
+    dayjs.locale('pt-br');
+    const hoje = dayjs().format('DD/MM/YYYY - h:m')
+
+    console.log(hoje)
 
     const enviarDB = (e) => {
         setOcsAdd(ocsAdd+1)
         console.log(oc)
         e.preventDefault();
-        axios.post("http://192.168.0.152:4000/api/recebeOC", {oc:oc}).then(response => {
+        axios.post("http://192.168.0.152:4000/api/recebeOC", {
+            oc: oc,
+            data: dayjs().format('DD/MM/YYYY - h:m'),
+        }).then(response => {
             console.log(response)
         }).catch(error => {
             console.log(error)
