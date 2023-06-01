@@ -4,6 +4,7 @@ import Logo from '../../components/Logo';
 import axios from 'axios';
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 export default function HomePage(){

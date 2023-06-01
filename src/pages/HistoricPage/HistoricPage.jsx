@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from "react";
 import BtnHome from '../../components/BtnHome';
 import Logo from '../../components/Logo';
+import Swal from 'sweetalert2';
 
 export default function HistoricPage() {
     const [data, setData] = useState([]);
