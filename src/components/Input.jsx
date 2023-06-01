@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 
-export default function Input(){
+export default function Input(props){
     return (
-        <SCInput className='validate' placeholder="Ola"/>
+        <SCInput onChange={props.onChange} className='validate' placeholder="Ola"/>
     )
 }
 

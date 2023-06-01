@@ -29,7 +29,7 @@ def obter_paginas():
 
 @app.route('/api/recebeOC', methods=["POST", "GET"])
 def recebeOC():
-    dados = request.form
+    dados = request.json
     print(dados)
     return {"value": dados}
 

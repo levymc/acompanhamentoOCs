@@ -5,10 +5,23 @@ import Input from '../../components/Input';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
 export default function AddOCPage(){
+
+    const [oc, setOC] = useState("")
+
+    const enviarDB = (e) => {
+        console.log(oc)
+        e.preventDefault();
+        axios.post("http://192.168.0.152:4000/api/recebeOC", {oc:oc}).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
     return (
         <ContainerPage>
-            <Form className='input-field' action='http://192.168.0.152:4000/api/recebeOC'>
-                <Input />
+            <Form className='input-field' onSubmit={enviarDB}>
+                <Input onChange={(e) => setOC(e.target.value)} />
                 <button type='submit'> Enviar</button>
             </Form>
             
