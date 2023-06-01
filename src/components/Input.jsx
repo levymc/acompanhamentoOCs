@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export default function Input(){
     return (
-        <SCInput placeholder="Ola"/>
+        <SCInput className='validate' placeholder="Ola"/>
     )
 }
 

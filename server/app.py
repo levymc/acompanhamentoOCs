@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 mode = "dev" #prod ou dev
@@ -26,6 +26,12 @@ def obter_paginas():
         },
     ]
     return jsonify(pages)
+
+@app.route('/api/recebeOC', methods=["POST", "GET"])
+def recebeOC():
+    dados = request.form
+    print(dados)
+    return {"value": dados}
 
 if __name__ == '__main__':
     if mode == 'dev':

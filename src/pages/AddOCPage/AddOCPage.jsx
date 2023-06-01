@@ -7,7 +7,11 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 export default function AddOCPage(){
     return (
         <ContainerPage>
-            <Input />
+            <Form className='input-field' action='http://192.168.0.152:4000/api/recebeOC'>
+                <Input />
+                <button type='submit'> Enviar</button>
+            </Form>
+            
         </ContainerPage>
     )
 }
@@ -21,4 +25,10 @@ const ContainerPage = styled.div`
     align-items: center;
     flex-direction: column;
     gap: 2rem;
+`
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
 `
