@@ -16,7 +16,7 @@ def obter_paginas():
         },
         {
             'text': 'Histórico',
-            'route': '/',
+            'route': '/historicPage',
             'onClick': ''
         },
         {
