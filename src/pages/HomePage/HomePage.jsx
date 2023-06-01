@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Button from '../../components/Button';
-
+import Logo from '../../components/Logo';
 
 export default function HomePage(){
 
@@ -26,6 +26,7 @@ export default function HomePage(){
         <ContainerHome>
             <h1>Acompanhamento OCs</h1>
             {pages.map((page, i) => <Button text={page.text} />)}
+            <Logo />
         </ContainerHome>
     )
 }
@@ -40,6 +41,7 @@ const ContainerHome = styled.div`
     flex-direction: column;
     gap: 2rem;
     h1{
-        font-size: 22px;
+        font-size: 25px;
         margin-bottom: 3rem;
-    
+    }
+`

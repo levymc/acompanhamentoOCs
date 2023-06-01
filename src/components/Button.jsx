@@ -16,4 +16,6 @@ const SCButton = styled.button`
     min-width: 30vw;
     max-width: 60vw;
     border-radius: 10px;
-    border:
+    border: 1px solid #E57373;
+    cursor: pointer;
+`
