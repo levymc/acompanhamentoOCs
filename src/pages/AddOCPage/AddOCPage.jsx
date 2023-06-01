@@ -3,6 +3,8 @@ import axios from 'axios';
 import React, { useState, useEffect, useContext } from "react";
 import Input from '../../components/Input';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
+import BtnHome from '../../components/BtnHome';
+
 
 export default function AddOCPage(){
 
@@ -22,6 +24,7 @@ export default function AddOCPage(){
 
     return (
         <ContainerPage>
+            <BtnHome />
             <Form className='input-field' onSubmit={enviarDB}>
                 <Input 
                     onChange={(e) => setOC(e.target.value)} 
