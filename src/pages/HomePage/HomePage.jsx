@@ -1,35 +1,38 @@
 import styled from 'styled-components';
 import Button from '../../components/Button';
 import Logo from '../../components/Logo';
+import axios from 'axios';
+import React, { useState, useEffect, useContext } from "react";
+
 
 export default function HomePage(){
 
-    const pages = [
-        {
-            text: "Adicionar OCs",
-            route: "/",
-            onClick: ""
-        },
-        {
-            text: "Histórico",
-            route: "/",
-            onClick: ""
-        },
-        {
-            text: "Gráficos",
-            route: "/",
-            onClick: ""
-        },
-    ]
+    const [pages, setPages] = useState([]);
 
-    return (
-        <ContainerHome>
-            <h1>Acompanhamento OCs</h1>
-            {pages.map((page, i) => <Button text={page.text} />)}
-            <Logo />
-        </ContainerHome>
-    )
-}
+    useEffect(() => {
+    async function fetchPages() {
+        try {
+        const response = await axios.get('/api/paginas');
+        console.log(response)
+        setPages(response.data);
+        } catch (error) {
+        console.error(error);
+        }
+    }
+
+    fetchPages();
+    }, []);
+
+        return (
+            <ContainerHome>
+                <h1>Acompanhamento OCs</h1>
+                {pages.map((page, i) => (
+                    <Button key={i} text={page.text} />
+                ))}
+                <Logo />
+            </ContainerHome>
+        );
+    }
 
 const ContainerHome = styled.div`
     background-color: #E5E5E5;
