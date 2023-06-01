@@ -36,6 +36,9 @@ def recebeOC():
     response = OCs.insert(oc, 0, data)  # Substitua 0 pelo valor adequado para a coluna "quantidadePecas"
     return {"value": response}
 
+@app.route('/api/historico',methods=["POST", "GET"])
+def historico():
+    return OCs.consulta()
 
 if __name__ == '__main__':
     if mode == 'dev':
