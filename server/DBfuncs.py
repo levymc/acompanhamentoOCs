@@ -26,12 +26,21 @@ class OCs(Base):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
     @classmethod
-    def insert(cls, **kwargs):
-        instance = cls(**kwargs)
+    def insert(cls, oc, quantidadePecas, data):
+        form40_instance = cls(oc=oc, quantidadePecas=quantidadePecas, data=data)
+
         session = Session()
-        session.add(instance)
+        session.add(form40_instance)
         session.commit()
+
+        # Consulta a linha recém-inserida
+        linha_inserida = session.query(cls).filter_by(id=form40_instance.id).first().as_dict
+
         session.close()
+
+        # Retorna a linha inserida
+        return linha_inserida
+
 
     @classmethod
     def consulta(cls):

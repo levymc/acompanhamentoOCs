@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+from DBfuncs import OCs
 
 mode = "dev" #prod ou dev
 
@@ -30,8 +31,11 @@ def obter_paginas():
 @app.route('/api/recebeOC', methods=["POST", "GET"])
 def recebeOC():
     dados = request.json
-    print(dados)
-    return {"value": dados}
+    oc = dados['oc']
+    data = dados['data']
+    response = OCs.insert(oc, 0, data)  # Substitua 0 pelo valor adequado para a coluna "quantidadePecas"
+    return {"value": response}
+
 
 if __name__ == '__main__':
     if mode == 'dev':
