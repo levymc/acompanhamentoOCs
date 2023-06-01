@@ -46,15 +46,17 @@ export default function AddOCPage(){
                     onChange={(e) => setOC(e.target.value)} 
                     placeholder = "Código da OC"
                     type = "number"
+                    id="oc"
                 />
                 <Input 
                     onChange={(e) => setQnt(e.target.value)} 
                     placeholder = "Quantidade de Peças na OC"
                     type = "number"
+                    id="qnt"
                 />
                 <button type='submit'> Cadastrar OC </button>
             </Form>
-            <h2>{ocsAdd != 0 && ocsAdd}</h2>
+            <h2>{ocsAdd != 0 && "Quantidade de OCs adicionadas:  "+ ocsAdd}</h2>
             
         </ContainerPage>
     )
@@ -65,10 +67,14 @@ const ContainerPage = styled.div`
     max-height:100%;
     min-height: 100vh;
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 2rem;
+    /* gap: 2rem; */
+    h2{
+        font-size: 20px;
+        color: #740101;
+    }
 `
 const Form = styled.form`
     margin: auto;
