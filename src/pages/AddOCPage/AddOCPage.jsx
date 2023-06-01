@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Input from '../../components/Input';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import BtnHome from '../../components/BtnHome';
-
+import Logo from '../../components/Logo';
 
 export default function AddOCPage(){
 
@@ -29,6 +29,7 @@ export default function AddOCPage(){
     return (
         <ContainerPage>
             <BtnHome />
+            <Logo />
             <Form className='input-field' onSubmit={enviarDB}>
                 <Input 
                     onChange={(e) => setOC(e.target.value)} 
@@ -47,12 +48,13 @@ const ContainerPage = styled.div`
     max-height:100%;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     gap: 2rem;
 `
 const Form = styled.form`
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
