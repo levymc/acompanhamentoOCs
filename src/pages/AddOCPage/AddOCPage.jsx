@@ -22,7 +22,7 @@ export default function AddOCPage(){
         <ContainerPage>
             <Form className='input-field' onSubmit={enviarDB}>
                 <Input onChange={(e) => setOC(e.target.value)} />
-                <button type='submit'> Enviar</button>
+                <button type='submit'> Cadastrar OC </button>
             </Form>
             
         </ContainerPage>
@@ -43,5 +43,15 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    gap: 2rem;
+    width: 40vw;
+    button{
+        padding: 1rem;
+        background-color: #E57373;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        border: 1px solid #E57373;
+    }
 `

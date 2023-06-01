@@ -8,5 +8,5 @@ export default function Input(props){
 }
 
 const SCInput = styled.input`
-    
+    width: 10px;
 `
