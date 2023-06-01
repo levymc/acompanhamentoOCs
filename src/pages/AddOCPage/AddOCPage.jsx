@@ -8,8 +8,12 @@ import BtnHome from '../../components/BtnHome';
 
 export default function AddOCPage(){
 
-    const [oc, setOC] = useState("")
-    const [ocsAdd, setOcsAdd] = useState(0)
+    const [oc, setOC] = useState("");
+    const [ocsAdd, setOcsAdd] = useState(0);
+    const [isEmptyError, setIsEmptyError] = useState(false);
+    const [isDuplicateError, setIsDuplicateError] = useState(false);
+    const [isLengthError, setIsLengthError] = useState(false);
+
 
     const enviarDB = (e) => {
         setOcsAdd(ocsAdd+1)
