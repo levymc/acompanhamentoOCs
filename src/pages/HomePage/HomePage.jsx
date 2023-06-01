@@ -10,24 +10,22 @@ export default function HomePage(){
     const [pages, setPages] = useState([]);
 
     useEffect(() => {
-    async function fetchPages() {
-        try {
-        const response = await axios.get('/api/paginas');
-        console.log(response)
-        setPages(response.data);
-        } catch (error) {
-        console.error(error);
-        }
-    }
-
-    fetchPages();
+        function fetchPages() {
+            axios.get('http://192.168.0.152:4000/api/paginas').then(response => {
+                console.log(response)
+                setPages(response.data);
+            }).catch(error => {
+                console.log(error)
+            })
+            }
+        fetchPages();
     }, []);
 
         return (
             <ContainerHome>
                 <h1>Acompanhamento OCs</h1>
                 {pages.map((page, i) => (
-                    <Button key={i} text={page.text} />
+                    <Button key={i} text={page["text"]} />
                 ))}
                 <Logo />
             </ContainerHome>
