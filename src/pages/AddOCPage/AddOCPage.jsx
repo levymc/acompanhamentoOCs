@@ -7,8 +7,10 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 export default function AddOCPage(){
 
     const [oc, setOC] = useState("")
+    const [ocsAdd, setOcsAdd] = useState(0)
 
     const enviarDB = (e) => {
+        setOcsAdd(ocsAdd+1)
         console.log(oc)
         e.preventDefault();
         axios.post("http://192.168.0.152:4000/api/recebeOC", {oc:oc}).then(response => {
@@ -21,9 +23,13 @@ export default function AddOCPage(){
     return (
         <ContainerPage>
             <Form className='input-field' onSubmit={enviarDB}>
-                <Input onChange={(e) => setOC(e.target.value)} />
+                <Input 
+                    onChange={(e) => setOC(e.target.value)} 
+                    placeholder = "Código da OC"
+                />
                 <button type='submit'> Cadastrar OC </button>
             </Form>
+            <h2>{ocsAdd != 0 && ocsAdd}</h2>
             
         </ContainerPage>
     )
