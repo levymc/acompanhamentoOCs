@@ -10,6 +10,10 @@ export default function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/addOC" element={
+              <AddOCPage
+              />
+          } />
         </Routes>
       </Router>
     </>
