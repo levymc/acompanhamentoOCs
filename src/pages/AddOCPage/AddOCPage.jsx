@@ -24,6 +24,7 @@ export default function AddOCPage(){
 
     const enviarDB = (e) => {
         setOcsAdd(ocsAdd+1)
+        setOC("")
         console.log(oc)
         e.preventDefault();
         axios.post("http://192.168.0.152:4000/api/recebeOC", {
@@ -45,8 +46,9 @@ export default function AddOCPage(){
                 <div id="title">Código da OC</div>
                 <Input 
                     onChange={(e) => setOC(e.target.value)} 
-                    placeholder = "Código da OC"
-                    type = "number"
+                    value={oc}
+                    placeholder="Código da OC"
+                    type="number"
                     id="oc"
                 />
                 {/* <Input 
