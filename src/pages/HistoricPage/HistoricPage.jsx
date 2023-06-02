@@ -12,104 +12,109 @@ const Export = ({ onExport }) => (
 );
 
 export default function HistoricPage(props) {
-  const [searchText, setSearchText] = useState('');
-
+    const [searchText, setSearchText] = useState('');
+    const [totalCount, setTotalCount] = useState(0);
+  
+    const columns = [
+      {
+        name: 'OC',
+        selector: row => {
+          const ocString = row.oc.toString();
+          const firstDigits = ocString.substring(0, 9);
+          const remainingDigits = ocString.substring(9);
+          return `${firstDigits}/${remainingDigits}`;
+        },
+        sortable: true,
+      },
+      {
+        name: 'Data',
+        selector: row => row.data,
+        sortable: true,
+      },
+    ];
+  
+    const filteredData = props.data.filter(item =>
+      item.oc.toString().includes(searchText) ||
+      item.data.includes(searchText)
+    );
+  
+    useEffect(() => {
+      setTotalCount(filteredData.length);
+    }, [filteredData]);
+  
+    const handleSearch = e => {
+      setSearchText(e.target.value);
+    };
+  
+    const textTranslations = {
+      pagination: {
+        rowsPerPage: 'Linhas por página:',
+        rangeSeparator: 'de',
+        noRowsPerPage: 'Nenhum resultado para exibir',
+        showRowsPerPage: 'Exibir linhas por página',
+        jumpToPage: 'Ir para página:',
+        displayRows: 'de',
+      },
+      toolbar: {
+        search: 'Buscar',
+        downloadCsv: 'Download CSV',
+        print: 'Imprimir',
+        viewColumns: 'Ver colunas',
+        filterTable: 'Filtrar tabela',
+      },
+      filter: {
+        all: 'Todos',
+        title: 'Filtros',
+        reset: 'Resetar',
+      },
+      viewColumns: {
+        title: 'Colunas visíveis',
+        titleAria: 'Colunas visíveis',
+      },
+    };
+  
+    const handleExport = () => {
+      const csvData = filteredData.map(item => ({
+        OC: item.oc,
+        Data: item.data,
+      }));
+      const csvContent = "data:text/csv;charset=utf-8," + Papa.unparse(csvData);
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "historico.csv");
+      document.body.appendChild(link);
+      link.click();
+    };
+  
+    return (
+      <ContainerPage>
+        <BtnHome />
+        <Logo />
+        <ContainerTable>
+          <section>
+            <input type="text" value={searchText} onChange={handleSearch} placeholder="Buscar..." />
+          </section>
+          <DataTable
+            title="Histórico de OCs"
+            columns={columns}
+            data={filteredData}
+            text={textTranslations}
+            pagination
+            paginationPerPage={5}
+            paginationRowsPerPageOptions={[10, 20, 30, 40, 50]}
+            actions={<Export onExport={handleExport} />}
+          />
+          <TotalCount>Total: {totalCount}</TotalCount>
+        </ContainerTable>
+      </ContainerPage>
+    )
+  }
   
 
-  const columns = [
-    {
-      name: 'OC',
-      selector: row => {
-        const ocString = row.oc.toString();
-        const firstDigits = ocString.substring(0, 9);
-        const remainingDigits = ocString.substring(9);
-        return `${firstDigits}/${remainingDigits}`;
-      },
-      sortable: true,
-    },
-    {
-      name: 'Data',
-      selector: row => row.data,
-      sortable: true,
-    },
-  ];
-
-  const handleSearch = e => {
-    setSearchText(e.target.value);
-  };
-
-  const filteredData = props.data.filter(item =>
-    item.oc.toString().includes(searchText) ||
-    item.data.includes(searchText)
-  );
-
-  const textTranslations = {
-    pagination: {
-      rowsPerPage: 'Linhas por página:',
-      rangeSeparator: 'de',
-      noRowsPerPage: 'Nenhum resultado para exibir',
-      showRowsPerPage: 'Exibir linhas por página',
-      jumpToPage: 'Ir para página:',
-      displayRows: 'de',
-    },
-    toolbar: {
-      search: 'Buscar',
-      downloadCsv: 'Download CSV',
-      print: 'Imprimir',
-      viewColumns: 'Ver colunas',
-      filterTable: 'Filtrar tabela',
-    },
-    filter: {
-      all: 'Todos',
-      title: 'Filtros',
-      reset: 'Resetar',
-    },
-    viewColumns: {
-      title: 'Colunas visíveis',
-      titleAria: 'Colunas visíveis',
-    },
-  };
-
-  const handleExport = () => {
-    const csvData = filteredData.map(item => ({
-      OC: item.oc,
-      Data: item.data,
-    }));
-    const csvContent = "data:text/csv;charset=utf-8," + Papa.unparse(csvData);
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "historico.csv");
-    document.body.appendChild(link);
-    link.click();
-  };
-
-  return (
-    <ContainerPage>
-      <BtnHome />
-      <Logo />
-      <ContainerTable>
-        <section>
-          <input type="text" value={searchText} onChange={handleSearch} placeholder="Buscar..." />
-        </section>
-        <DataTable
-          title="Histórico de OCs"
-          columns={columns}
-          data={filteredData}
-          text={textTranslations}
-          pagination
-          paginationPerPage={5}
-          paginationRowsPerPageOptions={[10, 20, 30, 40, 50]}
-          actions={<Export onExport={handleExport} />}
-        />
-      </ContainerTable>
-    </ContainerPage>
-  )
-}
-
 const SCCSV = styled.button`
-    font-size: 13px;
-`
+  font-size: 13px;
+`;
 
 const ContainerPage = styled.div`
   background-color: #E5E5E5;
@@ -134,4 +139,9 @@ const ContainerTable = styled.div`
     right: 15px;
     z-index: 99;
   }
+`;
+
+const TotalCount = styled.div`
+  text-align: center;
+  margin-top: 1rem;
 `;
