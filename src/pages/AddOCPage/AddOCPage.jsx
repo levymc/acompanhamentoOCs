@@ -42,18 +42,19 @@ export default function AddOCPage(){
             <BtnHome />
             <Logo />
             <Form className='input-field' onSubmit={enviarDB}>
+                <div id="title">Código da OC</div>
                 <Input 
                     onChange={(e) => setOC(e.target.value)} 
                     placeholder = "Código da OC"
                     type = "number"
                     id="oc"
                 />
-                <Input 
+                {/* <Input 
                     onChange={(e) => setQnt(e.target.value)} 
                     placeholder = "Quantidade de Peças na OC"
                     type = "number"
                     id="qnt"
-                />
+                /> */}
                 <button type='submit'> Cadastrar OC </button>
             </Form>
             <h2>{ocsAdd != 0 && "Quantidade de OCs adicionadas:  "+ ocsAdd}</h2>
@@ -82,7 +83,7 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 0.2rem;
     width: 40vw;
     button{
         padding: 1rem;
@@ -91,5 +92,9 @@ const Form = styled.form`
         border-radius: 10px;
         cursor: pointer;
         border: 1px solid #E57373;
+    }
+    #title{
+        width: 100%;
+        text-align: start;
     }
 `
