@@ -21,10 +21,10 @@ export default function BtnHome(){
 const SecBtn = styled.section`
     position: absolute;
     height:auto;
-    top: 1rem;
-    left: 1rem;
+    bottom: 3rem;
+    right: 2rem;
     #arrowIcon{
-        font-size: 25px;
+        font-size: 50px;
         cursor: pointer;
         color: #000000;
     }
