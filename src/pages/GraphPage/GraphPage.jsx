@@ -5,12 +5,13 @@ import BtnHome from '../../components/BtnHome';
 import Logo from '../../components/Logo';
 import 'chart.js/auto';
 import { Bar } from 'react-chartjs-2';
+import moment from 'moment';
 
 
 export default function GraphPage(props){
 
     // Extrai os meses do campo "data" das "oc"
-    const meses = props.data.map(item => new Date(item.data).getMonth());
+    const meses = props.data.map(item => moment(item.data, 'DD/MM/YYYY - HH:mm').month());
 
     console.log(props.data, meses)
 
