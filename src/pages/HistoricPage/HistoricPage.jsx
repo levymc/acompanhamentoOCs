@@ -28,7 +28,12 @@ export default function HistoricPage() {
   const columns = [
     {
       name: 'OC',
-      selector: row => row.oc,
+      selector: row => {
+        const ocString = row.oc.toString();
+        const firstDigits = ocString.substring(0, 9);
+        const remainingDigits = ocString.substring(9);
+        return `${firstDigits}/${remainingDigits}`;
+      },
       sortable: true,
     },
     {
@@ -102,7 +107,7 @@ export default function HistoricPage() {
           data={filteredData}
           text={textTranslations}
           pagination
-          paginationPerPage={10}
+          paginationPerPage={5}
           paginationRowsPerPageOptions={[10, 20, 30, 40, 50]}
           actions={<Export onExport={handleExport} />}
         />
@@ -123,6 +128,7 @@ const ContainerPage = styled.div`
   align-items: center;
   flex-direction: column;
   gap: 2rem;
+  padding-bottom: 3rem;
 `;
 
 const ContainerTable = styled.div`
