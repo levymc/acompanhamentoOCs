@@ -22,7 +22,7 @@ def obter_paginas():
         },
         {
             'text': 'Gráficos',
-            'route': '/',
+            'route': '/graphPage',
             'onClick': ''
         },
     ]

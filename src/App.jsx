@@ -5,6 +5,7 @@ import HistoricPage from './pages/HistoricPage/HistoricPage';
 import ResetStyle from "./style/ResetStyle";
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
+import GraphPage from './pages/GraphPage/GraphPage';
 
 
 export default function App() {
@@ -20,6 +21,10 @@ export default function App() {
           } />
           <Route path="/historicPage" element={
               <HistoricPage
+              />
+          } />
+          <Route path="/graphPage" element={
+              <GraphPage
               />
           } />
         </Routes>
