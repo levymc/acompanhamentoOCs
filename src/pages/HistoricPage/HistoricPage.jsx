@@ -11,14 +11,13 @@ const Export = ({ onExport }) => (
   <SCCSV onClick={onExport}>Exportar CSV</SCCSV>
 );
 
-export default function HistoricPage() {
-  const [data, setData] = useState([]);
+export default function HistoricPage(props) {
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     axios.get("http://192.168.0.152:4000/api/historico")
       .then(response => {
-        setData(response.data);
+        props.setData(response.data);
       })
       .catch(error => {
         console.log(error);
@@ -47,7 +46,7 @@ export default function HistoricPage() {
     setSearchText(e.target.value);
   };
 
-  const filteredData = data.filter(item =>
+  const filteredData = props.data.filter(item =>
     item.oc.toString().includes(searchText) ||
     item.data.includes(searchText)
   );
