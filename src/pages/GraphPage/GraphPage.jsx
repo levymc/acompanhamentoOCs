@@ -73,5 +73,4 @@ const Container = styled.div`
 `
 const ContainerGraph = styled.div`
     width: 70%;
-    margin: auto;
 `
