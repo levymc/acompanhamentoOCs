@@ -12,6 +12,8 @@ export default function GraphPage(props){
     // Extrai os meses do campo "data" das "oc"
     const meses = props.data.map(item => new Date(item.data).getMonth());
 
+    console.log(props.data, meses)
+
     // Conta a ocorrência de cada mês
     const contagemMeses = {};
     meses.forEach(mes => {

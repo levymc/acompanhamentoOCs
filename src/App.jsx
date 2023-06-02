@@ -7,10 +7,24 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import GraphPage from './pages/GraphPage/GraphPage';
 import React, { useState, useEffect } from "react";
+import axios from 'axios';
 
 
 export default function App() {
+
   const [data, setData] = useState([])
+
+  useEffect(() => {
+    axios.get("http://192.168.0.152:4000/api/historico")
+      .then(response => {
+        setData(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, []);
+
+
   return (
     <>
       <ResetStyle />

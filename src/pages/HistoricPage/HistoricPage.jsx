@@ -14,15 +14,7 @@ const Export = ({ onExport }) => (
 export default function HistoricPage(props) {
   const [searchText, setSearchText] = useState('');
 
-  useEffect(() => {
-    axios.get("http://192.168.0.152:4000/api/historico")
-      .then(response => {
-        props.setData(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+  
 
   const columns = [
     {
