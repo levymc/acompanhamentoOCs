@@ -3,7 +3,6 @@ import axios from 'axios';
 import React, { useState, useEffect } from "react";
 import BtnHome from '../../components/BtnHome';
 import Logo from '../../components/Logo';
-import Swal from 'sweetalert2';
 import DataTable from 'react-data-table-component';
 
 export default function HistoricPage() {
@@ -21,29 +20,27 @@ export default function HistoricPage() {
 
     const columns = [
         {
-          name: 'OC',
-          selector: 'oc',
-          sortable: true,
+            name: 'OC',
+            selector: row => row.oc,
+            sortable: true,
         },
         {
-          name: 'Data',
-          selector: 'data',
-          sortable: true,
+            name: 'Data',
+            selector: row => row.data,
+            sortable: true,
         },
-      ];
+    ];
+    
       
-      const dados = data.map((values, i) => ({
+    const dados = data.map((values, i) => ({
         data: values.data,
         oc: values.oc,
-      }));
-        // ...outros dados
-      
+    }));
 
     return (
         <ContainerPage>
             <BtnHome />
             <Logo />
-            {/* {data.map((values, i) => <h1>{values.oc}  -  {values.data}</h1>)} */}
             <ContainerTable>
                 <DataTable
                     title="Histórico de OCs"
@@ -51,8 +48,6 @@ export default function HistoricPage() {
                     data={dados}
                 />
             </ContainerTable>
-            
-            
         </ContainerPage>
     )
 }
@@ -70,4 +65,4 @@ const ContainerPage = styled.div`
 const ContainerTable = styled.div`
     width:50%;
     margin: auto;
-`
+`;
